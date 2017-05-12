@@ -1,6 +1,6 @@
 {
   "name": "bcoin-zmq",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Bitcoin notification bike-shed",
   "license": "MIT",
   "repository": "git://github.com/bcoin-org/bcoin-zmq.git",
