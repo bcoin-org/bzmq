@@ -1,0 +1,35 @@
+{
+  "name": "bcoin-zmq",
+  "version": "0.0.0",
+  "description": "Bitcoin notification bike-shed",
+  "license": "MIT",
+  "repository": "git://github.com/bcoin-org/bcoin-zmq.git",
+  "homepage": "https://github.com/bcoin-org/bcoin-zmq",
+  "bugs": {
+    "url": "https://github.com/bcoin-org/bcoin-zmq/issues"
+  },
+  "author": "Christopher Jeffrey <chjjeffrey@gmail.com> (https://github.com/chjj)",
+  "keywords": [
+    "bcoin",
+    "bitcoin",
+    "notifications",
+    "zmq",
+    "zeromq"
+  ],
+  "engines": {
+    "node": ">= 0.11.0"
+  },
+  "dependencies": {
+    "zeromq": "4.2.1"
+  },
+  "devDependencies": {
+    "jsdoc": "3.4.0",
+    "jshint": "2.9.4",
+    "mocha": "3.0.2"
+  },
+  "main": "./lib/zmq.js",
+  "scripts": {
+    "test": "mocha --reporter spec test/*-test.js",
+    "lint": "jshint lib/ || exit 0"
+  }
+}
