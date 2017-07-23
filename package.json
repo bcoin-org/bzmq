@@ -1,6 +1,6 @@
 {
   "name": "bcoin-zmq",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Bitcoin notification bike-shed",
   "license": "MIT",
   "repository": "git://github.com/bcoin-org/bcoin-zmq.git",
@@ -17,13 +17,13 @@
     "zeromq"
   ],
   "engines": {
-    "node": ">=7.0.0"
+    "node": ">=7.6.0"
   },
   "dependencies": {
     "zeromq": "^4.2.1"
   },
   "peerDependencies": {
-    "bcoin": ">=1.0.0-beta.12"
+    "bcoin": ">=1.0.0-beta.13"
   },
   "devDependencies": {
     "eslint": "^4.1.0"
