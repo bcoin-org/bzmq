@@ -1,6 +1,6 @@
-# bcoin-zmq
+# bzmq
 
-bcoin-zmq is a [bcoin][bcoin] plugin which adds bitcoind-style ZeroMQ events to
+bzmq is a [bcoin][bcoin] plugin which adds bitcoind-style ZeroMQ events to
 bcoin.
 
 ## Usage
@@ -8,7 +8,7 @@ bcoin.
 When used with bcoin, it exposes several zmq flags:
 
 ``` bash
-$ bcoin --plugins bcoin-zmq \
+$ bcoin --plugins bzmq \
   --zmq-pub-hashblock=tcp://127.0.0.1:43332 \
   --zmq-pub-rawblock=tcp://127.0.0.1:43332 \
   --zmq-pub-hashtx=tcp://127.0.0.1:43332 \
