@@ -1,12 +1,12 @@
 {
-  "name": "bcoin-zmq",
+  "name": "bzmq",
   "version": "0.0.2",
   "description": "Bitcoin notification bike-shed",
   "license": "MIT",
-  "repository": "git://github.com/bcoin-org/bcoin-zmq.git",
-  "homepage": "https://github.com/bcoin-org/bcoin-zmq",
+  "repository": "git://github.com/bcoin-org/bzmq.git",
+  "homepage": "https://github.com/bcoin-org/bzmq",
   "bugs": {
-    "url": "https://github.com/bcoin-org/bcoin-zmq/issues"
+    "url": "https://github.com/bcoin-org/bzmq/issues"
   },
   "author": "Christopher Jeffrey <chjjeffrey@gmail.com>",
   "keywords": [
@@ -20,16 +20,34 @@
     "node": ">=7.6.0"
   },
   "dependencies": {
-    "zeromq": "^4.2.1"
+    "zeromq": "~4.6.0"
   },
   "peerDependencies": {
-    "bcoin": ">=1.0.0-beta.13"
+    "bcoin": "~1.0.0"
   },
   "devDependencies": {
-    "eslint": "^4.1.0"
+    "babelify": "^8.0.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "browserify": "^14.5.0",
+    "eslint": "^4.14.0",
+    "mocha": "^4.0.1",
+    "uglifyjs-webpack-plugin": "^1.1.5",
+    "uglify-es": "^3.1.3",
+    "webpack": "^3.10.0"
   },
   "main": "./lib/zmq.js",
   "scripts": {
-    "lint": "eslint lib/ || exit 0"
+    "browserify": "browserify -s bzmq lib/bzmq.js | uglifyjs -c > bzmq.js",
+    "clean": "rm -f bzmq.js",
+    "lint": "eslint lib/ test/ || exit 0",
+    "test": "mocha --reporter spec test/*-test.js",
+    "webpack": "webpack --config webpack.config.js"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
   }
 }
