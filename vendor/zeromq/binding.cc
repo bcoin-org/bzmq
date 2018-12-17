@@ -167,6 +167,8 @@ namespace zmq {
       static NAN_METHOD(Unmonitor);
 #endif
 
+      Nan::AsyncResource *async_resource;
+
       short PollForEvents();
       uv_poll_t *poll_handle_;
       static void UV_PollCallback(uv_poll_t* handle, int status, int events);
@@ -391,7 +393,7 @@ namespace zmq {
     Nan::HandleScope scope;
     Local<Value> callback_v = Nan::Get(this->handle(), Nan::New(read_callback_symbol)).ToLocalChecked();
 
-    Nan::MakeCallback(this->handle(), callback_v.As<Function>(), 0, NULL);
+    async_resource->runInAsyncScope(this->handle(), callback_v.As<Function>(), 0, NULL);
   }
 
   void
@@ -399,7 +401,7 @@ namespace zmq {
     Nan::HandleScope scope;
     Local<Value> callback_v = Nan::Get(this->handle(), Nan::New(send_callback_symbol)).ToLocalChecked();
 
-    Nan::MakeCallback(this->handle(), callback_v.As<Function>(), 0, NULL);
+    async_resource->runInAsyncScope(this->handle(), callback_v.As<Function>(), 0, NULL);
   }
 
   void
@@ -450,7 +452,7 @@ namespace zmq {
         break;
     }
 
-    Nan::MakeCallback(this->handle(), callback_v.As<Function>(), 4, argv);
+    async_resource->runInAsyncScope(this->handle(), callback_v.As<Function>(), 4, argv);
   }
 
   void
@@ -465,7 +467,7 @@ namespace zmq {
     Local<Value> argv[1];
     argv[0] = Nan::New<String>(error_msg).ToLocalChecked();
 
-    Nan::MakeCallback(this->handle(), callback_v.As<Function>(), 1, argv);
+    async_resource->runInAsyncScope(this->handle(), callback_v.As<Function>(), 1, argv);
   }
 
   void
@@ -559,6 +561,8 @@ namespace zmq {
     }
 
     endpoints = 0;
+
+    async_resource = new Nan::AsyncResource("zeromq:socket");
 
     poll_handle_ = new uv_poll_t;
 
@@ -806,7 +810,9 @@ namespace zmq {
     }
     socket->endpoints += 1;
 
-    Nan::MakeCallback(Nan::GetCurrentContext()->Global(), cb, 1, argv);
+    Nan::AsyncResource async_resource("zeromq:UV_BindAsyncAfter");
+
+    async_resource.runInAsyncScope(Nan::GetCurrentContext()->Global(), cb, 1, argv);
 
     delete state;
     delete req;
@@ -885,7 +891,9 @@ namespace zmq {
       socket->_DetachFromEventLoop();
     }
 
-    Nan::MakeCallback(Nan::GetCurrentContext()->Global(), cb, 1, argv);
+    Nan::AsyncResource async_resource("zeromq:UV_UnbindAsyncAfter");
+
+    async_resource.runInAsyncScope(Nan::GetCurrentContext()->Global(), cb, 1, argv);
 
     delete state;
     delete req;
@@ -1425,6 +1433,8 @@ namespace zmq {
 
       uv_poll_stop(poll_handle_);
       uv_close(reinterpret_cast<uv_handle_t*>(poll_handle_), on_uv_close);
+
+      delete async_resource;
     }
   }
 
