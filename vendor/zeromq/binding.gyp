@@ -10,15 +10,8 @@
       'cflags!': ['-fno-exceptions'],
       'cflags_cc!': ['-fno-exceptions'],
       'cflags_cc+': [
-        '-Wno-cast-function-type',
-        '-Wno-deprecated-declarations'
+        '-Wno-cast-function-type'
       ],
-      'xcode_settings': {
-        'OTHER_CFLAGS': [
-          '-Wno-deprecated-declarations'
-        ]
-      },
-      'msvs_disabled_warnings': [4996],
       'conditions': [
         ["zmq_external == 'true'", {
           'link_settings': {

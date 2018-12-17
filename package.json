@@ -18,16 +18,17 @@
   "author": "Christopher Jeffrey <chjjeffrey@gmail.com>",
   "main": "./lib/zmq.js",
   "scripts": {
-    "install": "cd vendor/zeromq && node scripts/preinstall.js && node-gyp rebuild",
+    "install": "npm run rebuild",
+    "rebuild": "cd vendor/zeromq && node scripts/preinstall.js && node-gyp rebuild",
     "lint": "eslint lib/ || exit 0",
     "test": "bmocha --reporter spec test/*-test.js"
   },
   "dependencies": {
-    "bsert": "~0.0.5",
-    "nan": "~2.11.1"
+    "bsert": "~0.0.7",
+    "nan": "~2.12.0"
   },
   "devDependencies": {
-    "bmocha": "^0.1.0"
+    "bmocha": "^0.1.6"
   },
   "engines": {
     "node": ">=8.0.0"
