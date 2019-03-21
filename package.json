@@ -1,6 +1,6 @@
 {
   "name": "bzmq",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Bitcoin notification bike-shed",
   "keywords": [
     "bcoin",
@@ -24,7 +24,7 @@
     "test": "bmocha --reporter spec test/*-test.js"
   },
   "dependencies": {
-    "bsert": "~0.0.9",
+    "bsert": "~0.0.10",
     "nan": "~2.12.1"
   },
   "devDependencies": {
