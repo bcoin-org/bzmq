@@ -1,6 +1,5 @@
 build/
-vendor/zeromq/build/
-vendor/zeromq/zmq/
 node_modules/
 npm-debug.log
-package-lock.json
+vendor/zeromq/build/
+vendor/zeromq/zmq/
