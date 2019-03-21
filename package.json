@@ -1,6 +1,6 @@
 {
   "name": "bzmq",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Bitcoin notification bike-shed",
   "keywords": [
     "bcoin",
